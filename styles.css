@@ -19,7 +19,7 @@ body {
   box-shadow: 0 0 10px 2px;
 }
 
-.answers {
+#answer-buttons {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10px;
@@ -41,4 +41,8 @@ body {
 
 button {
   cursor: pointer;
+}
+
+.hide {
+  display: none;
 }
