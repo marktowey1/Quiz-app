@@ -1,25 +1,8 @@
 const startButton = document.querySelector("#start-button");
 const nextButton = document.querySelector("#next-button");
 const questionContainer = document.querySelector("#question-container");
-const shuffledQuestions = undefined;
-const currentQuestionIndex = undefined;
-
-startButton.addEventListener("click", startGame);
-
-function startGame() {
-  startButton.classList.add("hide");
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-  currentQuestionIndex = 0;
-  nextButton.classList.remove("hide");
-  questionContainer.classList.remove("hide");
-  setNextQuestion();
-}
-
-function setNextQuestion() {
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
-}
-
-function showQuestion() {}
+const question = document.querySelector("#question");
+const answerButtons = document.querySelectorAll("#answer-buttons");
 
 const questions = [
   {
@@ -31,13 +14,41 @@ const questions = [
       { text: "Galway", isCorrect: false },
     ],
   },
-  {
-    question: "What is the capital of England?",
-    answers: [
-      { text: "London", isCorrect: true },
-      { text: "Birmingham", isCorrect: false },
-      { text: "Liverpool", isCorrect: false },
-      { text: "Manchester", isCorrect: false },
-    ],
-  },
 ];
+
+startButton.addEventListener("click", startGame);
+
+function startGame() {
+  startButton.classList.add("hide");
+  questionContainer.classList.remove("hide");
+  question.innerHTML = questions[0].question;
+  shuffleCountries(countries);
+}
+
+function selectAnswer() {}
+
+let countries = ["Ireland", "England", "France", "Wales", "Scotland"];
+let shuffledCountries;
+
+function shuffleCountries(countries) {
+  for (let i = countries.length - 1; i > 0; i--) {
+    const randomNumber = Math.floor(Math.random() * (i + 1));
+
+    [countries[i], countries[randomNumber]] = [
+      countries[randomNumber],
+      countries[i],
+    ];
+  }
+}
+
+// {
+//   question: "What is the capital of England?",
+//   answers: [
+//     { text: "London", isCorrect: true },
+//     { text: "Birmingham", isCorrect: false },
+//     { text: "Liverpool", isCorrect: false },
+//     { text: "Manchester", isCorrect: false },
+//   ],
+// },
+
+shuffledQuestions = questions.sort(() => Math.random() - 0.5);
